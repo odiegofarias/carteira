@@ -16,7 +16,7 @@ OPERACAO_CHOICES = (
 
 class Ativo(models.Model):
     ativo = models.CharField(max_length=6)
-    corretora = models.OneToOneField(Corretora, on_delete=models.DO_NOTHING, related_name="corretora")
+    corretora = models.ForeignKey(Corretora, on_delete=models.DO_NOTHING, related_name="corretora")
     valor_unitario = models.DecimalField(max_digits=8, decimal_places=2)
     data_compra = models.DateField()
     taxa = models.DecimalField(default=0, max_digits=6, decimal_places=2)

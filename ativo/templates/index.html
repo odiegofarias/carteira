@@ -4,7 +4,7 @@
 <h3 class="m-4">Todos os Ativos</h3>
 <div class="row">
   <div class="col-12">
-    {% if ativos %}
+    {% if valores_aplicados %}
     <div class="card bg-light ms-4 me-4 mb-4">
       <div class="card-header">
         <i class="fa-solid fa-list fa-lg"></i> Student Records
@@ -27,19 +27,19 @@
                 </tr>
               </thead>
               <tbody>
-                {% for ativo in ativos %}
+                {% for valor_aplicado in valores_aplicados %}
                   <tr>
-                    <td>{{ ativo.ativo }}</td>
-                    <td>R$ {{ ativo.total|floatformat:2 }}</td>
-                    <td>{{ ativo.quantidade }}</td>
+                    <td>{{ valor_aplicado.ativo }}</td>
+                    <td>R$ {{ valor_aplicado.total|floatformat:2 }}</td>
+                    <td>{{ valor_aplicado.quantidade }}</td>
                     <td>VALOR</td>
                     <td>VALOR</td>
-                    <td>{{ ativo.corretora__nome}}</td>
+                    <td>{{ valor_aplicado.corretora__nome}}</td>
                     <td>VALOR</td>
                     <td>VALOR</td>
 
                     <td>
-                      <button type="button" class="btn btn-success me-1" href="{% url 'ativo' ativo.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ativo.id}}">
+                      <button type="button" class="btn btn-success me-1" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ativo.id}}">
                         <i class="fa-solid fa-circle-info fa-lg"></i>
                       </button>
 
@@ -115,7 +115,7 @@
       </div>
     </div>
     {% else %}
-      <h5 class="alert alert-primary ms-4 me-4">No Student Records</h5>
+      <h5 class="alert alert-primary ms-4 me-4">Não há ativos para exibir.</h5>
     {% endif %}
   </div>
 </div>

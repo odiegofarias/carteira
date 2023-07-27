@@ -15,18 +15,20 @@ def get_cotacao(ticker):
 
 
 def index(request):
-    ativos = Ativo.objects.values('id', 'ativo', 'corretora__nome', 'quantidade', 'cotacao_atual').annotate(
+    valores_aplicados = Ativo.objects.values('ativo').annotate(
         total=Sum(
 	        F('valor_unitario') * F('quantidade')
         )
-    ).order_by('ativo')
+    )
 
-    print(ativos)
+    ativos = Ativo.objects.all()
+
+    print(valores_aplicados)
+    # print(ativos)
 
     
-    print(get_cotacao('HGLG11'))
 
-    return render(request, 'index.html', {'ativos': ativos})
+    return render(request, 'index.html', {'valores_aplicados': valores_aplicados})
     
 
 def ativo(request, id):
