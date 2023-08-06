@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Ativo, Corretora
+from .forms import AtivoForm
 from django.db.models import Sum, F
 import requests
 import json
@@ -34,4 +35,10 @@ def index(request):
 def ativo(request, id):
 
     return redirect('index')
+
+
+def add(request):
+    form = AtivoForm
+
+    return render(request, 'add.html', {'form': form})
 
