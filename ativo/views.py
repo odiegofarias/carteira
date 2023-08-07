@@ -32,7 +32,7 @@ def index(request):
     return render(request, 'index.html', {'valores_aplicados': valores_aplicados})
     
 
-def ativo(request, id):
+def ativo(request):
 
     return redirect('index')
 
