@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h3 class="m-4">Todos os Ativos</h3>
+<h3 class="m-4">Movimentações</h3>
 <div class="row">
   <div class="col-12">
-    {% if valores_aplicados %}
+    {% if movimentacoes %}
     <div class="card bg-light ms-4 me-4 mb-4">
       <div class="card-header">
-        <i class="fa-solid fa-list fa-lg"></i> Student Records
+        <i class="fa-solid fa-list fa-lg"></i> Todas as movimentações
       </div>
       <div class="card-body">
         <p class="card-text">
@@ -15,33 +15,38 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Ativo</th>
-                  <th scope="col">Valor aplicado</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Data</th>
                   <th scope="col">Quantidade</th>
-                  <th scope="col">Preço Médio</th>
-                  <th scope="col">Coração Atual</th>
+                  <th scope="col">Valor unitário</th>
+                  <th scope="col">Taxas</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Corretora</th>
-                  <th scope="col">Saldo Bruto</th>
-                  <th scope="col">Resultado</th>
                   <th scope="col">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {% for valor_aplicado in valores_aplicados %}
+                {% for ativo in movimentacoes %}
                   <tr>
-                    <td>{{ valor_aplicado.ativo }}</td>
-                    <td>R$ {{ valor_aplicado.total|floatformat:2 }}</td>
-                    <td>{{ valor_aplicado.quantidade }}</td>
-                    <td>VALOR</td>
-                    <td>VALOR</td>
-                    <td>{{ valor_aplicado.corretora__nome}}</td>
-                    <td>VALOR</td>
-                    <td>VALOR</td>
+                    <td>{{ ativo.ativo }}</td>
+                    {% if ativo.tipo_de_operacao == "A" %}
+                      <td><span class="badge bg-success">{{ ativo.get_tipo_de_operacao_display }}</span></td>
+                    {% else %}
+                      <td><span class="badge bg-danger">{{ ativo.get_tipo_de_operacao_display }}</span></td>
+                    {% endif %}
+                    <td>{{ ativo.data_compra|date:"d/m/Y" }}</td>
+                    <td>{{ ativo.quantidade }}</td>
+                    <td>R$ {{ ativo.valor_unitario|floatformat:2 }}</td>
+                    <td>R$ {{ ativo.taxa|floatformat:2 }}</td>
+                    <td>R$ {{ ativo.total_aplicado_por_movimentacao|floatformat:2 }}</td>
+                    <td>{{ ativo.corretora.nome}}</td>
 
                     <td>
                       <button type="button" class="btn btn-success me-1" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ativo.id}}">
                         <i class="fa-solid fa-circle-info fa-lg"></i>
                       </button>
+                      
 
                       <!-- Modal - View Student -->
                       <div class="modal" id="myModal{{ativo.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -80,6 +85,8 @@
                         <i class="fa-solid fa-trash-can fa-lg"></i>
                       </button>
 
+                      
+
                       <!-- Modal - Delete Student -->
                       <div class="modal" id="#" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -108,8 +115,10 @@
                     </td>
                   </tr>
                 {% endfor %}
+                
               </tbody>
             </table>
+            {% include "pagination.html" %}
           </div>
         </p>
       </div>

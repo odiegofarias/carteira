@@ -27,4 +27,7 @@ class Ativo(models.Model):
     def __str__(self) -> str:
         return self.ativo
     
+    def total_aplicado_por_movimentacao(self):
+        return self.valor_unitario * self.quantidade + self.taxa
+    
     

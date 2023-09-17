@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Ativo, Corretora
 from .forms import AtivoForm
 from django.db.models import Sum, F
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import requests
 import json
 
@@ -16,20 +17,23 @@ def get_cotacao(ticker):
 
 
 def index(request):
-    valores_aplicados = Ativo.objects.values('ativo').annotate(
-        total=Sum(
-	        F('valor_unitario') * F('quantidade')
-        )
-    )
+    movimentacoes = Ativo.objects.all()
 
-    ativos = Ativo.objects.all()
 
-    print(valores_aplicados)
-    # print(ativos)
+    # valores_aplicados = Ativo.objects.values('ativo').annotate(
+    #     total=Sum(
+	#         F('valor_unitario') * F('quantidade')
+    #     )
+    # )
+
+    # ativos = Ativo.objects.all()
+
+    # print(valores_aplicados)
+    # # print(ativos)
 
     
 
-    return render(request, 'index.html', {'valores_aplicados': valores_aplicados})
+    return render(request, 'index.html', {'movimentacoes': movimentacoes})
     
 
 def ativo(request):
@@ -38,7 +42,7 @@ def ativo(request):
 
 
 def add(request):
-    form = AtivoForm
+    form = AtivoForm()
 
     return render(request, 'add.html', {'form': form})
 
