@@ -1,0 +1,27 @@
+<div class="modal" id="myModal{{ativo.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Student: {{ ativo.ativo }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-unstyled">
+            <li>Ativo: <strong>{{ ativo.ativo }}</strong></li>
+            <li>First Name: <strong>{{ student.first_name }}</strong></li>
+            <li>Last Name: <strong>{{ student.last_name }}</strong></li>
+            <li>Email: <strong>{{ student.email }}</strong></li>
+            <li>Field of Study: <strong>{{ student.field_of_study }}</strong></li>
+            <li>GPA: <strong>{{ student.gpa }}</strong></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

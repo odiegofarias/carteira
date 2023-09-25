@@ -54,3 +54,12 @@ def add(request):
 
     return render(request, 'add.html', {'form': form})
 
+def delete(request, pk):
+    movimentacao = Ativo.objects.get(id=pk)
+
+    if request.method == "POST":
+        movimentacao.delete()
+
+    return redirect('index')
+    
+
