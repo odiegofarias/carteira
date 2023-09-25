@@ -23,6 +23,7 @@ class Ativo(models.Model):
     cotacao_atual = models.DecimalField(default=0, max_digits=6, decimal_places=2)
     tipo_de_operacao = models.CharField(max_length=1, choices=OPERACAO_CHOICES)
     quantidade = models.IntegerField()
+    criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.ativo

@@ -17,7 +17,7 @@ def get_cotacao(ticker):
 
 
 def index(request):
-    movimentacoes = Ativo.objects.all()
+    movimentacoes = Ativo.objects.all().order_by('-criado_em')
 
 
     # valores_aplicados = Ativo.objects.values('ativo').annotate(
