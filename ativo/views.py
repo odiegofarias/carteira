@@ -44,5 +44,13 @@ def ativo(request):
 def add(request):
     form = AtivoForm()
 
+    if request.method == "POST":
+        form = AtivoForm(request.POST)
+
+        form.save()
+
+        return redirect('index')
+    
+
     return render(request, 'add.html', {'form': form})
 

@@ -17,7 +17,7 @@ class AtivoForm(forms.ModelForm):
             'ativo': forms.TextInput(attrs={'class': 'form-control'}),
             'corretora': forms.Select(attrs={'class': 'form-control'}),
             'valor_unitario': forms.NumberInput(attrs={'class': 'form-control'}),
-            'data_compra': forms.DateInput(attrs={'class': 'form-control'}),
+            'data_compra': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'taxa': forms.NumberInput(attrs={'class': 'form-control'}),
             'quantidade': forms.NumberInput(attrs={'class': 'form-control'}),
         }
